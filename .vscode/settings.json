@@ -1,0 +1,20 @@
+{
+    "dart.normalizeFileCasing": true,
+    "dart.flutterCreateOffline": true,
+    "dart.flutterHotReloadOnSave": "always",
+    "dart.previewBazelWorkspaceCustomScripts": true,
+    "dart.previewFlutterUiGuides": true,
+    "editor.unfoldOnClickAfterEndOfLine": true,
+    "editor.showFoldingControls": "always",
+    "notebook.showFoldingControls": "always",
+    "editor.fontFamily": "",
+    "workbench.fontAliasing": "antialiased",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 17,
+    "editor.suggestLineHeight": 17,
+    "editor.renderLineHighlightOnlyWhenFocus": true,
+    "files.autoSave": "onFocusChange",
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "html.format.maxPreserveNewLines": 0,
+    "editor.bracketPairColorization.enabled": true
+}
