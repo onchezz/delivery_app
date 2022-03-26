@@ -62,7 +62,7 @@ class PopularItem extends StatelessWidget {
                                 child: Container(
                                   height: Dimentions.h20,
                                   width: Dimentions.h20,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: main1Color,
                                   ),
@@ -70,6 +70,7 @@ class PopularItem extends StatelessWidget {
                                     child: SmallText(
                                       text:
                                           popularProduct.totalItems.toString(),
+                                      size: Dimentions.font10,
                                       color: appWhite,
                                     ),
                                   ),
