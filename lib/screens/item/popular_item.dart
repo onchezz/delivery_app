@@ -1,6 +1,7 @@
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/controllers/popular_product_cotroller.dart';
 import 'package:delivery_app/routes/route_helper.dart';
+import 'package:delivery_app/screens/cart/cart_page.dart';
 import 'package:delivery_app/utils/app_constants.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:delivery_app/utils/dimensions.dart';
@@ -54,7 +55,12 @@ class PopularItem extends StatelessWidget {
                   builder: (popularProduct) {
                     return Stack(
                       children: [
-                        AppIcon(icon: Icons.shopping_cart_outlined),
+                        AppIcon(
+                          icon: Icons.shopping_cart_outlined,
+                          onTap: () {
+                            Get.to(() => CartPage());
+                          },
+                        ),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
                                 right: 0,

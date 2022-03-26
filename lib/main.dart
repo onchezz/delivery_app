@@ -4,6 +4,7 @@ import 'package:delivery_app/controllers/recomended_product.dart';
 import 'package:delivery_app/routes/route_helper.dart';
 import 'package:delivery_app/screens/Home/homepage.dart';
 import 'package:delivery_app/screens/Home/pageview_body.dart';
+import 'package:delivery_app/screens/cart/cart_page.dart';
 import 'package:delivery_app/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // home: CartPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
     );

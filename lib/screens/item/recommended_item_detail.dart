@@ -143,7 +143,8 @@ class RecommendedItemDetail extends StatelessWidget {
                       },
                     ),
                     BigText(
-                      text: '\$ ${product.price} X   ${controller.inCartItems}',
+                      text:
+                          '\$ ${controller.inCartItems > 1 ? product.price * controller.inCartItems : product.price} X   ${controller.inCartItems}',
                       size: Dimentions.font26,
                       color: mainBlackColor,
                     ),

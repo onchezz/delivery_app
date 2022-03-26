@@ -1,5 +1,6 @@
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/data/repository/popular_product_repo.dart';
+import 'package:delivery_app/models/cart_model.dart';
 import 'package:delivery_app/models/product.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:get/get.dart';
@@ -39,16 +40,19 @@ class PopularProductController extends GetxController {
       print('items added  ' + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
     } else {
-      if (inCartItems > 0) {
-        _quantity = checkQuantity(_quantity - 1);
-        print('items removed  ' + _quantity.toString());
-      }
+      _quantity = checkQuantity(_quantity - 1);
+      print('items removed  ' + _quantity.toString());
     }
+
     update();
   }
 
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar('item count', 'only $neededItems items available ',
@@ -88,5 +92,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get cartItems {
+    return _cart.getCartItems;
   }
 }
