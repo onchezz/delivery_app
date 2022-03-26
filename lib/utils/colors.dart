@@ -12,3 +12,4 @@ const Color titleColor = Color(0xFF5c524f);
 const Color mainBlackColor = Color(0xFF332d2b);
 const Color yellow1Color = Color(0xFFfa7552);
 const Color yellow2Color = Color(0xFFffd379);
+const Color appWhite = Colors.white;

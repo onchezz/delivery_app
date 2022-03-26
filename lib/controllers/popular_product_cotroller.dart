@@ -14,7 +14,7 @@ class PopularProductController extends GetxController {
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
-  int items = 20;
+  int neededItems = 20;
   int _quantity = 0;
   int get quantity => _quantity;
   int _inCartItems = 0;
@@ -38,16 +38,18 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
     } else {
-      _quantity = checkQuantity(_quantity - 1);
+      if (inCartItems > 0) {
+        _quantity = checkQuantity(_quantity - 1);
+      }
     }
     update();
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       return 0;
-    } else if (quantity > items) {
-      Get.snackbar('item count', 'only $items items available ',
+    } else if ((_inCartItems + quantity) > 20) {
+      Get.snackbar('item count', 'only $neededItems items available ',
           backgroundColor: main1Color);
       return 20;
     } else {
@@ -57,14 +59,32 @@ class PopularProductController extends GetxController {
 
   void initProduct(
     CartController cart,
+    ProductModel product,
   ) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exists = false;
+    exists = _cart.ifExists(product);
+    if (exists) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+    print("Quantyty in the cart is $_inCartItems");
+    print("if item exits $exists");
   }
 
   void addItem(ProductModel product) {
-    
     _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    _cart.items.forEach((key, value) {
+      print(
+          "product id is${value.id} and name is ${value.name} items in cart are ${value.quantity} ");
+    });
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }

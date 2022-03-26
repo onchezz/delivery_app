@@ -23,7 +23,7 @@ class PopularItem extends StatelessWidget {
         Get.find<PopularProductController>().popularProductList[pageId];
 
     Get.find<PopularProductController>()
-        .initProduct(Get.find<CartController>());
+        .initProduct(Get.find<CartController>(), product);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -50,7 +50,35 @@ class PopularItem extends StatelessWidget {
                   icon: Icons.arrow_back_ios,
                   onTap: () => Get.back(),
                 ),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                GetBuilder<PopularProductController>(
+                  builder: (popularProduct) {
+                    return Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart_outlined),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
+                                child: Container(
+                                  height: Dimentions.h20,
+                                  width: Dimentions.h20,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: main1Color,
+                                  ),
+                                  child: Center(
+                                    child: SmallText(
+                                      text:
+                                          popularProduct.totalItems.toString(),
+                                      color: appWhite,
+                                    ),
+                                  ),
+                                ))
+                            : Container(),
+                      ],
+                    );
+                  },
+                )
               ],
             )),
         Positioned(
@@ -125,7 +153,7 @@ class PopularItem extends StatelessWidget {
                       SizedBox(
                         width: Dimentions.w10 / 2,
                       ),
-                      BigText(text: pupularProduct.quantity.toString()),
+                      BigText(text: pupularProduct.inCartItems.toString()),
                       SizedBox(
                         width: Dimentions.w10 / 2,
                       ),
