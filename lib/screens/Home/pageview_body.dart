@@ -139,23 +139,39 @@ class _PageViewBodyState extends State<PageViewBody> {
                           child: Row(
                             children: [
                               //image container
-                              Container(
-                                height: Dimentions.listViewImg,
-                                width: Dimentions.listViewImg,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimentions.radius20),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(AppConstants.BASE_URL +
-                                        AppConstants.UPLOAD_URL +
-                                        recommendedProducts
-                                            .recomendedrProductList[index]
-                                            .img!),
-                                  ),
+                              ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(Dimentions.radius20),
+                                child: FancyShimmerImage(
+                                  shimmerBaseColor: Colors.white,
+                                  boxFit: BoxFit.cover,
+                                  height: Dimentions.listViewImg,
+                                  width: Dimentions.listViewImg,
+                                  imageUrl: AppConstants.BASE_URL +
+                                      AppConstants.UPLOAD_URL +
+                                      recommendedProducts
+                                          .recomendedrProductList[index].img!,
                                 ),
                               ),
-                              //text container
+
+                              //   Container(
+                              //     height: Dimentions.listViewImg,
+                              //     width: Dimentions.listViewImg,
+                              //     decoration: BoxDecoration(
+                              //       borderRadius: BorderRadius.circular(
+                              //           Dimentions.radius20),
+                              //       // image: DecorationImage(
+                              //       //   fit: BoxFit.cover,
+                              //       //   image: NetworkImage(AppConstants.BASE_URL +
+                              //       //       AppConstants.UPLOAD_URL +
+                              //       //       recommendedProducts
+                              //       //           .recomendedrProductList[index]
+                              //       //           .img!),
+                              //       // ),
+                              //     ),
+                              //     child:
+                              //  ),
+                              //   //text container
                               Expanded(
                                   child: Container(
                                 height: Dimentions.listViewTextContainer,
@@ -182,7 +198,7 @@ class _PageViewBodyState extends State<PageViewBody> {
                                               .recomendedrProductList[index]
                                               .name),
                                       SizedBox(
-                                        height: Dimentions.h10 / 2,
+                                        height: Dimentions.h10,
                                       ),
                                       SmallText(
                                           overflow: TextOverflow.ellipsis,
@@ -192,25 +208,39 @@ class _PageViewBodyState extends State<PageViewBody> {
                                               .recomendedrProductList[index]
                                               .description),
                                       SizedBox(
-                                        height: Dimentions.h10 / 2,
+                                        height: Dimentions.h10,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: const [
-                                          IconText(
+                                      Flexible(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconText(
                                               icon: Icons.circle_sharp,
                                               text: 'Normal',
-                                              iconColor: iconColor1),
-                                          IconText(
+                                              iconColor: iconColor1,
+                                              iconSize:
+                                                  Dimentions.iconSize24 - 5,
+                                              textSize: Dimentions.font10,
+                                            ),
+                                            IconText(
                                               icon: Icons.location_on,
                                               text: '1.7km',
-                                              iconColor: main1Color),
-                                          IconText(
+                                              iconColor: main1Color,
+                                              iconSize:
+                                                  Dimentions.iconSize24 - 5,
+                                              textSize: Dimentions.font10,
+                                            ),
+                                            IconText(
                                               icon: Icons.access_alarm_rounded,
                                               text: '32 mins',
-                                              iconColor: yellow1Color),
-                                        ],
+                                              iconColor: yellow1Color,
+                                              iconSize:
+                                                  Dimentions.iconSize24 - 5,
+                                              textSize: Dimentions.font10,
+                                            ),
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
@@ -234,7 +264,7 @@ class _PageViewBodyState extends State<PageViewBody> {
     );
   }
 
-  Widget _buildPageItem(int index, ProductsModel popularProduct) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - scaleFactor);

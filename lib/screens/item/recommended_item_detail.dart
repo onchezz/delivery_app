@@ -7,6 +7,7 @@ import 'package:delivery_app/utils/dimensions.dart';
 import 'package:delivery_app/widgets/appicons.dart';
 import 'package:delivery_app/widgets/expanded_text_widget.dart';
 import 'package:delivery_app/widgets/text.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -65,11 +66,19 @@ class RecommendedItemDetail extends StatelessWidget {
                           BigText(size: Dimentions.font26, text: product.name)),
                 )),
             flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-              AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
-              fit: BoxFit.cover,
+                background: FancyShimmerImage(
+              imageUrl:
+                  AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
+              boxFit: BoxFit.cover,
               width: double.maxFinite,
-            )),
+              height: double.maxFinite,
+            )
+                //  Image.network(
+                //   AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
+                //   fit: BoxFit.cover,
+                //   width: double.maxFinite,
+                // ),
+                ),
           ),
           SliverToBoxAdapter(
             child: Container(

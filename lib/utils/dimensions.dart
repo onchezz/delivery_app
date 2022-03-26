@@ -15,6 +15,7 @@ class Dimentions {
   static double iconSize24 = screenh / 35.17;
   static double iconSize16 = screenh / 52.75;
   //font sizes
+  static double font10 = screenh / 84.4;
   static double font16 = screenh / 52.75;
   static double font20 = screenh / 42.2;
   static double font26 = screenh / 32.46;

@@ -1,3 +1,4 @@
+import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/controllers/popular_product_cotroller.dart';
 import 'package:delivery_app/controllers/recomended_product.dart';
 import 'package:delivery_app/routes/route_helper.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecomendedProductController>().getRecomendedProductList();
-
+    Get.find<CartController>();
     return GetMaterialApp(
       title: 'Delivery app',
       debugShowCheckedModeBanner: false,

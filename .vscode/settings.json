@@ -7,7 +7,7 @@
     "editor.unfoldOnClickAfterEndOfLine": true,
     "editor.showFoldingControls": "always",
     "notebook.showFoldingControls": "always",
-    "editor.fontFamily": "",
+    "editor.fontFamily": "Roboto, Monaco, 'Courier New', monospace",
     "workbench.fontAliasing": "antialiased",
     "editor.fontSize": 14,
     "editor.lineHeight": 17,
@@ -16,5 +16,9 @@
     "files.autoSave": "onFocusChange",
     "dart.previewFlutterUiGuidesCustomTracking": true,
     "html.format.maxPreserveNewLines": 0,
-    "editor.bracketPairColorization.enabled": true
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.indentation": false,
+    "dart.flutterSdkPaths": [
+        "/Users/chez/dev/git_flutter/flutter/bin"
+    ]
 }

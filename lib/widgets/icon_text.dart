@@ -7,12 +7,15 @@ class IconText extends StatelessWidget {
   final String text;
 
   final Color iconColor;
-
+  final double iconSize;
+  final double textSize;
   const IconText(
       {Key? key,
       required this.icon,
       required this.text,
-      required this.iconColor})
+      required this.iconColor,
+      this.iconSize = 0,
+      this.textSize = 0})
       : super(key: key);
 
   @override
@@ -22,14 +25,14 @@ class IconText extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
-          size: Dimentions.iconSize24,
+          size: iconSize == 0 ? Dimentions.iconSize24 : iconSize,
         ),
-        const SizedBox(
-          width: 2,
+        SizedBox(
+          width: Dimentions.w10 / 5,
         ),
         SmallText(
           text: text,
-          size: 14,
+          size: textSize == 0 ? Dimentions.font16 : textSize,
         )
       ],
     );
