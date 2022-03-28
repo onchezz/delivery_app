@@ -15,27 +15,31 @@ class CartController extends GetxController {
     if (_items.containsKey(product.id)) {
       _items.update(product.id!, (value) {
         return CartModel(
-          id: value.id,
-          name: value.name,
-          img: value.img,
-          price: value.price,
-          createdAt: DateTime.now().toString(),
-          exists: true,
-          quantity: value.quantity! + quantity,
-        );
+            id: value.id,
+            name: value.name,
+            img: value.img,
+            price: value.price,
+            createdAt: DateTime.now().toString(),
+            exists: true,
+            quantity: value.quantity! + quantity,
+            product: product);
       });
+
+      if (totalItems < 1) {
+        _items.remove(product.id);
+      }
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {
           return CartModel(
-            id: product.id,
-            name: product.name,
-            img: product.img,
-            price: product.price,
-            createdAt: DateTime.now().toString(),
-            exists: true,
-            quantity: quantity,
-          );
+              id: product.id,
+              name: product.name,
+              img: product.img,
+              price: product.price,
+              createdAt: DateTime.now().toString(),
+              exists: true,
+              quantity: quantity,
+              product: product);
         });
 
         Get.snackbar('cart', '$quantity  items added to cart',
@@ -45,6 +49,7 @@ class CartController extends GetxController {
             backgroundColor: main1Color, colorText: appWhite);
       }
     }
+    update();
   }
 
   bool ifExists(ProductModel product) {

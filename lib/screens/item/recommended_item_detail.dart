@@ -14,8 +14,10 @@ import 'package:get/get.dart';
 
 class RecommendedItemDetail extends StatelessWidget {
   final int pageId;
+  final String page;
 
-  const RecommendedItemDetail({Key? key, required this.pageId})
+  const RecommendedItemDetail(
+      {Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   @override
@@ -42,36 +44,43 @@ class RecommendedItemDetail extends StatelessWidget {
                   AppIcon(
                     icon: Icons.clear,
                     onTap: () {
-                      Get.offAllNamed(RouteHelper.initial);
+                      Get.back(canPop: false);
                     },
                   ),
                   GetBuilder<PopularProductController>(
                     builder: (popularProduct) {
-                      return Stack(
-                        children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: Container(
-                                    height: Dimentions.h20,
-                                    width: Dimentions.h20,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: main1Color,
-                                    ),
-                                    child: Center(
-                                      child: SmallText(
-                                        text: popularProduct.totalItems
-                                            .toString(),
-                                        size: Dimentions.font10,
-                                        color: appWhite,
+                      return GestureDetector(
+                        onTap: () {
+                          if (popularProduct.totalItems >= 1) {
+                            Get.toNamed(RouteHelper.cartPage);
+                          }
+                        },
+                        child: Stack(
+                          children: [
+                            const AppIcon(icon: Icons.shopping_cart_outlined),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      height: Dimentions.h20,
+                                      width: Dimentions.h20,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: main1Color,
                                       ),
-                                    ),
-                                  ))
-                              : Container(),
-                        ],
+                                      child: Center(
+                                        child: SmallText(
+                                          text: popularProduct.totalItems
+                                              .toString(),
+                                          size: Dimentions.font10,
+                                          color: appWhite,
+                                        ),
+                                      ),
+                                    ))
+                                : Container(),
+                          ],
+                        ),
                       );
                     },
                   )

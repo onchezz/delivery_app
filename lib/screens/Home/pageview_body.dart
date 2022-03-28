@@ -129,8 +129,8 @@ class _PageViewBodyState extends State<PageViewBody> {
                         recommendedProducts.recomendedrProductList.length,
                     itemBuilder: (_, index) {
                       return GestureDetector(
-                        onTap: () =>
-                            Get.toNamed(RouteHelper.getrecommendedPage(index)),
+                        onTap: () => Get.toNamed(
+                            RouteHelper.getrecommendedPage(index, 'initial')),
                         child: Container(
                           margin: EdgeInsets.only(
                               left: Dimentions.w20,
@@ -308,7 +308,8 @@ class _PageViewBodyState extends State<PageViewBody> {
               // ),
             ),
             child: GestureDetector(
-              onTap: (() => Get.toNamed(RouteHelper.getPouplarPage(index))),
+              onTap: (() =>
+                  Get.toNamed(RouteHelper.getPouplarPage(index, 'initial'))),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(Dimentions.radius30),
                   child: FancyShimmerImage(
