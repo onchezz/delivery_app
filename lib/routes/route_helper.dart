@@ -15,7 +15,7 @@ class RouteHelper {
   static String getPouplarPage(int pageId, String page) =>
       '$popularPage?pageId=$pageId&page=$page';
   static String getrecommendedPage(int pageId, String page) =>
-      '$recommendedPage?pageId=$pageId';
+      '$recommendedPage?pageId=$pageId&page=$page';
   static String getCartPage() => "$cartPage";
   //list of pages
   static List<GetPage> routes = [
