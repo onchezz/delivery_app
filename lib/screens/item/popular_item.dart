@@ -51,7 +51,13 @@ class PopularItem extends StatelessWidget {
               children: [
                 AppIcon(
                     icon: Icons.arrow_back_ios,
-                    onTap: () => Get.back(canPop: false)),
+                    onTap: () {
+                      if (page == 'cart') {
+                        Get.toNamed(RouteHelper.cartPage);
+                      } else {
+                        Get.back();
+                      }
+                    }),
                 GetBuilder<PopularProductController>(
                   builder: (popularProduct) {
                     return Stack(

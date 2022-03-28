@@ -44,7 +44,11 @@ class RecommendedItemDetail extends StatelessWidget {
                   AppIcon(
                     icon: Icons.clear,
                     onTap: () {
-                      Get.back(canPop: false);
+                      if (page == 'cart') {
+                        Get.toNamed(RouteHelper.cartPage);
+                      } else {
+                        Get.back(canPop: false);
+                      }
                     },
                   ),
                   GetBuilder<PopularProductController>(
