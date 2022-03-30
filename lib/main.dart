@@ -5,6 +5,8 @@ import 'package:delivery_app/routes/route_helper.dart';
 import 'package:delivery_app/screens/Home/homepage.dart';
 import 'package:delivery_app/screens/Home/pageview_body.dart';
 import 'package:delivery_app/screens/cart/cart_page.dart';
+import 'package:delivery_app/screens/main/main_page.dart';
+import 'package:delivery_app/screens/splash/splash_screen.dart';
 import 'package:delivery_app/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,8 +37,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: CartPage(),
-      initialRoute: RouteHelper.initial,
+      // home: SplashScreen(),
+      initialRoute: RouteHelper.splashPage,
       getPages: RouteHelper.routes,
     );
     // home: const HomeScreen());

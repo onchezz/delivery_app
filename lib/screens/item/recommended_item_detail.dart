@@ -156,8 +156,7 @@ class RecommendedItemDetail extends StatelessWidget {
                       },
                     ),
                     BigText(
-                      text:
-                          '\$ ${controller.inCartItems > 1 ? product.price * controller.inCartItems : product.price} X   ${controller.inCartItems}',
+                      text: '\$ ${product.price} X   ${controller.inCartItems}',
                       size: Dimentions.font26,
                       color: mainBlackColor,
                     ),
@@ -219,7 +218,8 @@ class RecommendedItemDetail extends StatelessWidget {
                                   BorderRadius.circular(Dimentions.h20),
                             ),
                             child: BigText(
-                              text: "\$${product.price} Add to Cart ",
+                              text:
+                                  "\$${controller.inCartItems > 1 ? product.price * controller.inCartItems : product.price} Add to Cart ",
                               color: Colors.white,
                             )),
                       )
