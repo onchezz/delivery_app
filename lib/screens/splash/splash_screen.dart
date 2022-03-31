@@ -20,10 +20,10 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1))
+        AnimationController(vsync: this, duration: const Duration(seconds: 2))
           ..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-    Timer(Duration(microseconds: 2), () => Get.offNamed(RouteHelper.initial));
+    Timer(Duration(microseconds: 5), () => Get.offNamed(RouteHelper.initial));
   }
 
   @override

@@ -116,7 +116,7 @@ class RecommendedItemDetail extends StatelessWidget {
               width: double.maxFinite,
               height: double.maxFinite,
             )
-                //  Image.network(
+                //     Image.network(
                 //   AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
                 //   fit: BoxFit.cover,
                 //   width: double.maxFinite,
