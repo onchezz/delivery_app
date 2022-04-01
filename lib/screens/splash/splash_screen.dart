@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:delivery_app/routes/route_helper.dart';
+import 'package:delivery_app/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,13 +45,13 @@ class _SplashScreenState extends State<SplashScreen>
               scale: animation,
               child: Image.asset(
                 'assets/image/logo part 1.png',
-                width: 250,
+                width: Dimentions.splashImg,
                 opacity: animation,
               ),
             ),
             Image.asset(
               'assets/image/logo part 2.png',
-              width: 250,
+              width: Dimentions.splashImg,
             ),
           ],
         ),
