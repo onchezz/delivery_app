@@ -10,7 +10,7 @@
     "editor.fontFamily": "Roboto, Monaco, 'Courier New', monospace",
     "workbench.fontAliasing": "antialiased",
     "editor.fontSize": 14,
-    "editor.lineHeight": 17,
+    "editor.lineHeight": 19,
     "editor.suggestLineHeight": 17,
     "editor.renderLineHighlightOnlyWhenFocus": true,
     "files.autoSave": "onFocusChange",

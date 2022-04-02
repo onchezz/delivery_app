@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
     Get.find<CartController>();
 
     // return GetBuilder<PopularProductController>(builder: (popular) {
-    // return GetBuilder<RecomendedProductController>(builder: (recommended) {
+    //   return GetBuilder<RecomendedProductController>(builder: (recommended) {
+    //     return GetBuilder<CartController>(builder: (cartController) {
     return GetMaterialApp(
       title: 'Delivery app',
       debugShowCheckedModeBanner: false,
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );
-    // });
+    //     });
+    //   });
     // });
     // home: const HomeScreen());
   }

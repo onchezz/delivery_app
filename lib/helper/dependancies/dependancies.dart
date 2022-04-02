@@ -11,20 +11,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> init() async {
   //sharedPrefelences
-  // final sharedPreferences = SharedPreferences.getInstance();
+  final sharedPreferences = await SharedPreferences.getInstance();
   // final Future<SharedPreferences> sharedPreferences =
   //     SharedPreferences.getInstance();
-  // Get.lazyPut(() => sharedPreferences);
+  Get.lazyPut(() => sharedPreferences, fenix: true);
   //api clients
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
 //repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecomendedProductRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CartRepo());
+  Get.lazyPut(() => CartRepo(sharedPreferences: sharedPreferences));
   //controllers
-  Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
-  Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()),
+      fenix: true);
+  Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
   Get.lazyPut(
-      () => RecomendedProductController(recomendedProductRepo: Get.find()));
+    () => RecomendedProductController(recomendedProductRepo: Get.find()),
+    fenix: true,
+  );
 }
