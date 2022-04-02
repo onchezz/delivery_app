@@ -6,7 +6,7 @@ import 'package:delivery_app/widgets/appicons.dart';
 import 'package:delivery_app/widgets/text.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -28,7 +28,9 @@ class CartPage extends StatelessWidget {
                     iconColor: appWhite,
                     iconSize: Dimentions.iconSize24,
                     bgColor: main1Color,
-                    onTap: () {},
+                    onTap: () {
+                      Get.back(canPop: false);
+                    },
                   ),
                   SizedBox(
                     width: Dimentions.w20 * 5,
