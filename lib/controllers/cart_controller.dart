@@ -20,7 +20,7 @@ class CartController extends GetxController {
             img: value.img,
             price: value.price,
             createdAt: DateTime.now().toString(),
-            exists: true,
+            exists: 'true',
             quantity: value.quantity! + quantity,
             product: product);
       });
@@ -37,7 +37,7 @@ class CartController extends GetxController {
               img: product.img,
               price: product.price,
               createdAt: DateTime.now().toString(),
-              exists: true,
+              exists: 'true',
               quantity: quantity,
               product: product);
         });

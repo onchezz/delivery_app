@@ -8,17 +8,17 @@ class CartModel {
   int? price;
   String? img;
   String? createdAt;
-  bool? exists;
+  String? exists;
   int? quantity;
   ProductModel? product;
 
   CartModel({
     this.id,
     this.name,
-    this.exists,
     this.price,
     this.img,
     this.createdAt,
+    this.exists,
     this.quantity,
     this.product,
   });
@@ -43,6 +43,7 @@ class CartModel {
       'created_at': this.exists,
       'exists': this.exists,
       'quantity': this.quantity,
+      'product': this.product!.toJson(),
     };
   }
 }
