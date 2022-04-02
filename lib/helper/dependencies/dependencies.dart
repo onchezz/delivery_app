@@ -30,5 +30,6 @@ Future<void> init() async {
   );
   Get.find<PopularProductController>().getPopularProductList();
   Get.find<RecomendedProductController>().getRecomendedProductList();
-  Get.find<CartController>();
+  // Get.find<CartController>();
+  Get.find<CartController>().getCartData();
 }
