@@ -20,5 +20,7 @@
     "editor.guides.indentation": false,
     "dart.flutterSdkPaths": [
         "/Users/chez/dev/git_flutter/flutter/bin"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "editor.guides.highlightActiveIndentation": false
 }

@@ -14,8 +14,10 @@ import 'package:get/get.dart';
 
 class RecommendedItemDetail extends StatelessWidget {
   final int pageId;
+  final String page;
 
-  const RecommendedItemDetail({Key? key, required this.pageId})
+  const RecommendedItemDetail(
+      {Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   @override
@@ -42,36 +44,47 @@ class RecommendedItemDetail extends StatelessWidget {
                   AppIcon(
                     icon: Icons.clear,
                     onTap: () {
-                      Get.offAllNamed(RouteHelper.initial);
+                      if (page == 'cart') {
+                        Get.toNamed(RouteHelper.cartPage);
+                      } else {
+                        Get.back(canPop: false);
+                      }
                     },
                   ),
                   GetBuilder<PopularProductController>(
                     builder: (popularProduct) {
-                      return Stack(
-                        children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: Container(
-                                    height: Dimentions.h20,
-                                    width: Dimentions.h20,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: main1Color,
-                                    ),
-                                    child: Center(
-                                      child: SmallText(
-                                        text: popularProduct.totalItems
-                                            .toString(),
-                                        size: Dimentions.font10,
-                                        color: appWhite,
+                      return GestureDetector(
+                        onTap: () {
+                          if (popularProduct.totalItems >= 1) {
+                            Get.toNamed(RouteHelper.cartPage);
+                          }
+                        },
+                        child: Stack(
+                          children: [
+                            const AppIcon(icon: Icons.shopping_cart_outlined),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      height: Dimentions.h20,
+                                      width: Dimentions.h20,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: main1Color,
                                       ),
-                                    ),
-                                  ))
-                              : Container(),
-                        ],
+                                      child: Center(
+                                        child: SmallText(
+                                          text: popularProduct.totalItems
+                                              .toString(),
+                                          size: Dimentions.font10,
+                                          color: appWhite,
+                                        ),
+                                      ),
+                                    ))
+                                : Container(),
+                          ],
+                        ),
                       );
                     },
                   )
@@ -103,7 +116,7 @@ class RecommendedItemDetail extends StatelessWidget {
               width: double.maxFinite,
               height: double.maxFinite,
             )
-                //  Image.network(
+                //     Image.network(
                 //   AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
                 //   fit: BoxFit.cover,
                 //   width: double.maxFinite,
@@ -143,8 +156,7 @@ class RecommendedItemDetail extends StatelessWidget {
                       },
                     ),
                     BigText(
-                      text:
-                          '\$ ${controller.inCartItems > 1 ? product.price * controller.inCartItems : product.price} X   ${controller.inCartItems}',
+                      text: '\$ ${product.price} X   ${controller.inCartItems}',
                       size: Dimentions.font26,
                       color: mainBlackColor,
                     ),
@@ -206,7 +218,8 @@ class RecommendedItemDetail extends StatelessWidget {
                                   BorderRadius.circular(Dimentions.h20),
                             ),
                             child: BigText(
-                              text: "\$${product.price} Add to Cart ",
+                              text:
+                                  "\$${controller.inCartItems > 1 ? product.price * controller.inCartItems : product.price} Add to Cart ",
                               color: Colors.white,
                             )),
                       )

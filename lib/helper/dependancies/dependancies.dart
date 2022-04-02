@@ -7,8 +7,14 @@ import 'package:delivery_app/data/repository/popular_product_repo.dart';
 import 'package:delivery_app/data/repository/recomended_repo.dart';
 import 'package:delivery_app/utils/app_constants.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> init() async {
+  //sharedPrefelences
+  // final sharedPreferences = SharedPreferences.getInstance();
+  // final Future<SharedPreferences> sharedPreferences =
+  //     SharedPreferences.getInstance();
+  // Get.lazyPut(() => sharedPreferences);
   //api clients
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 

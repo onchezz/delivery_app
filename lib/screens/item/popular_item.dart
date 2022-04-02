@@ -16,7 +16,9 @@ import 'package:get/get.dart';
 
 class PopularItem extends StatelessWidget {
   final int pageId;
-  const PopularItem({required this.pageId, Key? key}) : super(key: key);
+  final String page;
+  const PopularItem({required this.pageId, required this.page, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +50,14 @@ class PopularItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppIcon(
-                  icon: Icons.arrow_back_ios,
-                  onTap: () => Get.back(),
-                ),
+                    icon: Icons.arrow_back_ios,
+                    onTap: () {
+                      if (page == 'cart') {
+                        Get.toNamed(RouteHelper.cartPage);
+                      } else {
+                        Get.back();
+                      }
+                    }),
                 GetBuilder<PopularProductController>(
                   builder: (popularProduct) {
                     return Stack(
@@ -58,7 +65,9 @@ class PopularItem extends StatelessWidget {
                         AppIcon(
                           icon: Icons.shopping_cart_outlined,
                           onTap: () {
-                            Get.to(() => CartPage());
+                            if (popularProduct.totalItems >= 1) {
+                              Get.toNamed(RouteHelper.cartPage);
+                            }
                           },
                         ),
                         Get.find<PopularProductController>().totalItems >= 1
