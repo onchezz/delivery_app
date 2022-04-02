@@ -14,4 +14,6 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = '/api/v1/products/recommended';
 
   static const String UPLOAD_URL = "/uploads/";
+
+  static const String Cart_List = "cart-list";
 }

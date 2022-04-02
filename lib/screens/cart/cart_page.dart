@@ -33,10 +33,7 @@ class CartPage extends StatelessWidget {
                     icon: Icons.arrow_back_ios,
                     iconColor: main1Color,
                     iconSize: Dimentions.iconSize24,
-
-                    bgColor: main1Color,
-                    // bgColor: appWhite,
-
+                    bgColor: appWhite,
                     onTap: () {
                       Get.back(canPop: false);
                     },

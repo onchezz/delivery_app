@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'helper/dependancies/dependancies.dart' as dep;
+import 'helper/dependencies/dependencies.dart' as dep;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,13 +30,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecomendedProductController>().getRecomendedProductList();
-    Get.find<CartController>();
-
-    // return GetBuilder<PopularProductController>(builder: (popular) {
-    //   return GetBuilder<RecomendedProductController>(builder: (recommended) {
-    //     return GetBuilder<CartController>(builder: (cartController) {
     return GetMaterialApp(
       title: 'Delivery app',
       debugShowCheckedModeBanner: false,
@@ -53,3 +46,12 @@ class MyApp extends StatelessWidget {
     // home: const HomeScreen());
   }
 }
+
+
+// Get.find<PopularProductController>().getPopularProductList();
+    // Get.find<RecomendedProductController>().getRecomendedProductList();
+    // Get.find<CartController>();
+
+    // return GetBuilder<PopularProductController>(builder: (popular) {
+    //   return GetBuilder<RecomendedProductController>(builder: (recommended) {
+    //     return GetBuilder<CartController>(builder: (cartController) {

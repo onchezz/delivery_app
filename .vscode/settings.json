@@ -22,5 +22,8 @@
         "/Users/chez/dev/git_flutter/flutter/bin"
     ],
     "editor.formatOnSave": true,
-    "editor.guides.highlightActiveIndentation": false
+    "editor.guides.highlightActiveIndentation": false,
+    "cSpell.words": [
+        "cotroller"
+    ]
 }

@@ -55,43 +55,45 @@ class PopularItem extends StatelessWidget {
                       if (page == 'cart') {
                         Get.toNamed(RouteHelper.cartPage);
                       } else {
-                        Get.back();
+                        Get.toNamed(RouteHelper.getInitial());
                       }
                     }),
                 GetBuilder<PopularProductController>(
                   builder: (popularProduct) {
-                    return Stack(
-                      children: [
-                        AppIcon(
-                          icon: Icons.shopping_cart_outlined,
-                          onTap: () {
-                            if (popularProduct.totalItems >= 1) {
-                              Get.toNamed(RouteHelper.cartPage);
-                            }
-                          },
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 0,
-                                top: 0,
-                                child: Container(
-                                  height: Dimentions.h20,
-                                  width: Dimentions.h20,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: main1Color,
-                                  ),
-                                  child: Center(
-                                    child: SmallText(
-                                      text:
-                                          popularProduct.totalItems.toString(),
-                                      size: Dimentions.font10,
-                                      color: appWhite,
+                    return GestureDetector(
+                      onTap: () {
+                        if (popularProduct.totalItems >= 1) {
+                          Get.toNamed(RouteHelper.cartPage);
+                        }
+                      },
+                      child: Stack(
+                        children: [
+                          const AppIcon(
+                            icon: Icons.shopping_cart_outlined,
+                          ),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: Container(
+                                    height: Dimentions.h20,
+                                    width: Dimentions.h20,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: main1Color,
                                     ),
-                                  ),
-                                ))
-                            : Container(),
-                      ],
+                                    child: Center(
+                                      child: SmallText(
+                                        text: popularProduct.totalItems
+                                            .toString(),
+                                        size: Dimentions.font10,
+                                        color: appWhite,
+                                      ),
+                                    ),
+                                  ))
+                              : Container(),
+                        ],
+                      ),
                     );
                   },
                 )
