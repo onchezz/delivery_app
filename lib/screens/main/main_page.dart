@@ -4,6 +4,7 @@ import 'package:delivery_app/screens/Home/homepage.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -19,6 +20,13 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedPage = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark));
   }
 
   final List _pages = [

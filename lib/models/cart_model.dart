@@ -38,7 +38,7 @@ class CartModel {
   Map<String, dynamic> toJson() {
     return {
       'id': this.id,
-      'name': this.img,
+      'name': this.name,
       'price': this.price,
       'img': this.img,
       'created_at': this.exists,

@@ -28,6 +28,7 @@ class CartController extends GetxController {
 
       if (totalItems < 1) {
         _items.remove(product.id);
+        update();
       }
     } else {
       if (quantity > 0) {

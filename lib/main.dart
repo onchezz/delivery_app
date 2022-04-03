@@ -1,18 +1,7 @@
-import 'package:delivery_app/controllers/cart_controller.dart';
-import 'package:delivery_app/controllers/popular_product_cotroller.dart';
-import 'package:delivery_app/controllers/recomended_product.dart';
-import 'package:delivery_app/data/repository/cart_repo.dart';
 import 'package:delivery_app/routes/route_helper.dart';
-import 'package:delivery_app/screens/Home/homepage.dart';
-import 'package:delivery_app/screens/Home/pageview_body.dart';
-import 'package:delivery_app/screens/cart/cart_page.dart';
-import 'package:delivery_app/screens/main/main_page.dart';
-import 'package:delivery_app/screens/splash/splash_screen.dart';
-import 'package:delivery_app/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'helper/dependencies/dependencies.dart' as dep;
 
 Future<void> main() async {
