@@ -30,6 +30,9 @@ class CartController extends GetxController {
         _items.remove(product.id);
         update();
       }
+      if (items.isEmpty) {
+        update();
+      }
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {
@@ -79,7 +82,16 @@ class CartController extends GetxController {
     _items.forEach((key, value) {
       totalQuantity += value.quantity!;
     });
+
     return totalQuantity;
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.price! * value.quantity!;
+    });
+    return total;
   }
 
   List<CartModel> get getCartItems {
@@ -100,5 +112,16 @@ class CartController extends GetxController {
     for (var i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
+  }
+
+//on cheout item
+  void addToCartHistory() {
+    cartRepo.addToHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items.clear();
+    update();
   }
 }

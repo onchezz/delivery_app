@@ -1,6 +1,7 @@
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/controllers/popular_product_cotroller.dart';
 import 'package:delivery_app/controllers/recomended_product.dart';
+import 'package:delivery_app/data/repository/cart_repo.dart';
 import 'package:delivery_app/routes/route_helper.dart';
 import 'package:delivery_app/screens/item/recommended_item_detail.dart';
 import 'package:delivery_app/utils/app_constants.dart';
@@ -17,7 +18,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var da07fe15d1e47f4697852922bba5e996c4b5127c;
+    // var da07fe15d1e47f4697852922bba5e996c4b5127c;
     return Scaffold(
       backgroundColor: appWhite,
       body: Stack(
@@ -195,55 +196,60 @@ class CartPage extends StatelessWidget {
               )),
         ],
       ),
-      bottomNavigationBar: Container(
-        height: Dimentions.bottomBarh,
-        padding: EdgeInsets.only(
-            left: Dimentions.w20, right: Dimentions.w20, top: Dimentions.w20),
-        decoration: BoxDecoration(
-            color: buttonBackgroundColor,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimentions.h30),
-                topRight: Radius.circular(Dimentions.h30))),
-        child: Padding(
-          padding: EdgeInsets.only(bottom: Dimentions.h10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                  padding: EdgeInsets.only(
-                      left: Dimentions.h20,
-                      right: Dimentions.h20,
-                      top: Dimentions.h20,
-                      bottom: Dimentions.h20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(Dimentions.h20),
-                  ),
-                  child: BigText(
-                    text: '\$600',
-                    color: mainBlackColor.withOpacity(0.8),
-                  )),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
+      bottomNavigationBar:
+          GetBuilder<CartController>(builder: (cartController) {
+        return Container(
+          height: Dimentions.bottomBarh,
+          padding: EdgeInsets.only(
+              left: Dimentions.w20, right: Dimentions.w20, top: Dimentions.w20),
+          decoration: BoxDecoration(
+              color: buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimentions.h30),
+                  topRight: Radius.circular(Dimentions.h30))),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: Dimentions.h10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
                     padding: EdgeInsets.only(
                         left: Dimentions.h20,
                         right: Dimentions.h20,
                         top: Dimentions.h20,
                         bottom: Dimentions.h20),
                     decoration: BoxDecoration(
-                      color: main1Color,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(Dimentions.h20),
                     ),
                     child: BigText(
-                      text: " Check Out ",
-                      color: Colors.white,
+                      text: '\$' + cartController.totalAmount.toString(),
+                      color: mainBlackColor.withOpacity(0.8),
                     )),
-              )
-            ],
+                GestureDetector(
+                  onTap: () {
+                    cartController.addToCartHistory();
+                  },
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          left: Dimentions.h20,
+                          right: Dimentions.h20,
+                          top: Dimentions.h20,
+                          bottom: Dimentions.h20),
+                      decoration: BoxDecoration(
+                        color: main1Color,
+                        borderRadius: BorderRadius.circular(Dimentions.h20),
+                      ),
+                      child: BigText(
+                        text: " Check Out ",
+                        color: Colors.white,
+                      )),
+                )
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

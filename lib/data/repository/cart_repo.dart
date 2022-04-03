@@ -9,6 +9,7 @@ class CartRepo {
   CartRepo({required this.sharedPreferences});
 
   List<String> cart = [];
+  List<String> cartHistoryList = [];
 
   void addToCartList(List<CartModel> cartList) {
     cart = [];
@@ -37,5 +38,19 @@ class CartRepo {
         (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
+  }
+
+  void addToHistoryList() {
+    for (var i = 0; i < cart.length; i++) {
+      print('cart history ' + cart[i]);
+      cartHistoryList.add(cart[i]);
+    }
+    remove();
+    sharedPreferences.setStringList(
+        AppConstants.Cart_History_List, cartHistoryList);
+  }
+
+  void remove() {
+    sharedPreferences.remove(AppConstants.Cart_List);
   }
 }
