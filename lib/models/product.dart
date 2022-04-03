@@ -1,5 +1,7 @@
 // http://mvs.bslmeiyu.com/api/v1/products/popular
 
+// ignore_for_file: unused_field, unnecessary_this
+
 class Product {
   int? _totalSize;
   int? _typeId;

@@ -17,21 +17,23 @@ class CartRepo {
     cartList.forEach((item) => cart.add(jsonEncode(item)));
 
     sharedPreferences.setStringList(AppConstants.Cart_List, cart);
-    print(sharedPreferences.getStringList(AppConstants.Cart_List));
+    // print(sharedPreferences.getStringList(AppConstants.Cart_List));
 
     getCartList();
   }
 
   List<CartModel> getCartList() {
-    List<String> savedCart = [];
+    List<String> carts = [];
 
     if (sharedPreferences.containsKey(AppConstants.Cart_List)) {
-      savedCart = sharedPreferences.getStringList(AppConstants.Cart_List)!;
+      carts = sharedPreferences.getStringList(AppConstants.Cart_List)!;
       print('geting cart list from local storage ');
+      print(carts);
     }
 
     List<CartModel> cartList = [];
-    savedCart.forEach(
+
+    carts.forEach(
         (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;

@@ -7,8 +7,9 @@ class CartModel {
   String? name;
   int? price;
   String? img;
+
   String? createdAt;
-  String? exists;
+  bool? exists;
   int? quantity;
   ProductModel? product;
 
@@ -28,7 +29,7 @@ class CartModel {
     name = json['name'];
     price = json['price'];
     img = json['img'];
-    createdAt = json['created_at'];
+    createdAt = json['created_at'].toString();
     exists = json['exists'];
     quantity = json['quantity'];
     product = ProductModel.fromJson(json['product']);

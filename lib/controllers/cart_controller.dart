@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo});
-  final Map<int, CartModel> _items = {};
+  Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => _items;
   List<CartModel> storageItems = [];
@@ -21,7 +21,7 @@ class CartController extends GetxController {
             img: value.img,
             price: value.price,
             createdAt: DateTime.now().toString(),
-            exists: 'true',
+            exists: true,
             quantity: value.quantity! + quantity,
             product: product);
       });
@@ -38,7 +38,7 @@ class CartController extends GetxController {
               img: product.img,
               price: product.price,
               createdAt: DateTime.now().toString(),
-              exists: 'true',
+              exists: true,
               quantity: quantity,
               product: product);
         });
@@ -96,13 +96,8 @@ class CartController extends GetxController {
   set setCart(List<CartModel> items) {
     storageItems = items;
 
-    print(" the lenght of cart items list is" + storageItems.length.toString());
-    for (int i = 0; i > storageItems.length; i++) {
+    for (var i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
-      print(" the lenght of cart items list is" + _items.toString());
-      update();
     }
   }
 }
-
-// mm m 
