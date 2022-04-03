@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
         AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-    Timer(Duration(seconds: 2), () => Get.offNamed(RouteHelper.initial));
+    Timer(Duration(seconds: 2), () => Get.offAllNamed(RouteHelper.initial));
   }
 
   @override
@@ -36,10 +36,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    if (animation.isDismissed) {
-      Timer(Duration(seconds: 1), () => Get.offNamed(RouteHelper.initial));
-      // Get.offNamed(RouteHelper.initial);
-    }
+    // if (animation.isDismissed) {
+    //   Timer(Duration(seconds: 1), () => Get.offNamed(RouteHelper.initial));
+    //   // Get.offNamed(RouteHelper.initial);
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

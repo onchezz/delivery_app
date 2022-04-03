@@ -188,20 +188,28 @@ class RecommendedItemDetail extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                          padding: EdgeInsets.only(
-                              left: Dimentions.h20,
-                              right: Dimentions.h20,
-                              top: Dimentions.h20,
-                              bottom: Dimentions.h20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(Dimentions.h20),
-                          ),
-                          child: Icon(
-                            Icons.favorite,
-                            color: main1Color,
-                          )),
+                      GestureDetector(
+                        onTap: () {
+                          controller.favarite();
+                        },
+                        child: Container(
+                            padding: EdgeInsets.only(
+                                left: Dimentions.h20,
+                                right: Dimentions.h20,
+                                top: Dimentions.h20,
+                                bottom: Dimentions.h20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.circular(Dimentions.h20),
+                            ),
+                            child: Icon(
+                              controller.isFav
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline_outlined,
+                              color: main1Color,
+                            )),
+                      ),
                       GestureDetector(
                         onTap: () {
                           controller.addItem(product);

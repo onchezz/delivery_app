@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:delivery_app/screens/Home/homepage.dart';
+import 'package:delivery_app/screens/cart/cart_history.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +35,7 @@ class _MainPageState extends State<MainPage> {
     Container(
       child: const Center(child: Text('another Container 2')),
     ),
-    Container(
-      child: const Center(child: Text('another Container 3')),
-    ),
+    CartHistoryPage(),
     Container(
       child: const Center(child: Text('another Container 3')),
     ),

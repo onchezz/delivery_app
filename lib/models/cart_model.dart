@@ -7,8 +7,8 @@ class CartModel {
   String? name;
   int? price;
   String? img;
-
-  String? createdAt;
+  String? created;
+  String? time;
   bool? exists;
   int? quantity;
   ProductModel? product;
@@ -18,7 +18,8 @@ class CartModel {
     this.name,
     this.price,
     this.img,
-    this.createdAt,
+    this.created,
+    this.time,
     this.exists,
     this.quantity,
     this.product,
@@ -29,7 +30,8 @@ class CartModel {
     name = json['name'];
     price = json['price'];
     img = json['img'];
-    createdAt = json['created_at'].toString();
+    created = json['created_at'].toString();
+    time = json['time'];
     exists = json['exists'];
     quantity = json['quantity'];
     product = ProductModel.fromJson(json['product']);
@@ -42,6 +44,7 @@ class CartModel {
       'price': this.price,
       'img': this.img,
       'created_at': this.exists,
+      'time': this.time,
       'exists': this.exists,
       'quantity': this.quantity,
       'product': this.product!.toJson(),

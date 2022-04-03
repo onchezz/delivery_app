@@ -22,6 +22,11 @@ class PopularProductController extends GetxController {
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
   late CartController _cart;
+  bool isFav = false;
+  void favarite() {
+    isFav = !isFav;
+    update();
+  }
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPupularList();

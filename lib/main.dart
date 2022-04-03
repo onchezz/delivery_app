@@ -1,4 +1,5 @@
 import 'package:delivery_app/routes/route_helper.dart';
+import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,8 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Delivery app',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+              color: main1Color, elevation: 0, centerTitle: true)),
       // home: SplashScreen(),
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
