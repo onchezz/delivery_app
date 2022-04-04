@@ -56,7 +56,7 @@ class CartRepo {
     for (var element in cartHistoryList) {
       cartHistory.add(CartModel.fromJson(jsonDecode(element)));
     }
-    sharedPreferences.remove(AppConstants.Cart_History_List);
+    // sharedPreferences.remove(AppConstants.Cart_History_List);
     return cartHistory;
   }
 

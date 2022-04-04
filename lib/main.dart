@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           appBarTheme: const AppBarTheme(
-              color: main1Color, elevation: 0, centerTitle: true)),
+            color: main1Color,
+            elevation: 0,
+          )),
       // home: SplashScreen(),
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
