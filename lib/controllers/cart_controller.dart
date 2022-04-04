@@ -3,6 +3,7 @@ import 'package:delivery_app/models/cart_model.dart';
 import 'package:delivery_app/models/product.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -11,7 +12,8 @@ class CartController extends GetxController {
 
   Map<int, CartModel> get items => _items;
   List<CartModel> storageItems = [];
-
+  // var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
+  var date = DateTime.now().toString();
   void addItem(ProductModel product, int quantity) {
     if (_items.containsKey(product.id)) {
       _items.update(product.id!, (value) {
@@ -21,7 +23,7 @@ class CartController extends GetxController {
             img: value.img,
             price: value.price,
             created: value.created,
-            time: DateTime.now().toString(),
+            time: date,
             exists: true,
             quantity: value.quantity! + quantity,
             product: product);
@@ -43,7 +45,7 @@ class CartController extends GetxController {
               img: product.img,
               price: product.price,
               created: product.createdAt,
-              time: DateTime.now().toString(),
+              time: date,
               exists: true,
               quantity: quantity,
               product: product);
@@ -127,7 +129,22 @@ class CartController extends GetxController {
     update();
   }
 
+  void clearCartHistort() {
+    cartRepo.clearCartHistory();
+    update();
+  }
+
   List<CartModel> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
+  }
+
+  set setItems(Map<int, CartModel> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
+  void addToCartList() {
+    cartRepo.addToCartList(getCartItems);
+    update();
   }
 }

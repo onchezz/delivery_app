@@ -25,5 +25,8 @@
     "editor.guides.highlightActiveIndentation": false,
     "cSpell.words": [
         "cotroller"
-    ]
+    ],
+    "diffEditor.wordWrap": "inherit",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 160
 }
