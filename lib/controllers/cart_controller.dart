@@ -33,9 +33,9 @@ class CartController extends GetxController {
         _items.remove(product.id);
         update();
       }
-      if (items.isEmpty) {
-        update();
-      }
+      // if (items.isEmpty) {
+      //   update();
+      // }
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {

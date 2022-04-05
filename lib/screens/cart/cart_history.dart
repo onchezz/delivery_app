@@ -89,11 +89,6 @@ class CartHistoryPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           (() {
-                            // var dateFormat = DateFormat('MM/dd/yyyy hh:mm a');
-                            // var time =
-                            //     DateTime.parse(getCartHistoryList[j].time!);
-                            // var time = DateFormat('yyyy-MM-dd HH:mm:ss')
-                            //     .parse(getCartHistoryList[j].time!);
                             var date = DateFormat('MM/dd/yyyy hh:mm a').format(
                                 DateTime.parse(getCartHistoryList[j].time!));
 
