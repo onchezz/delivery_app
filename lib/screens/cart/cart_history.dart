@@ -22,28 +22,38 @@ class CartHistoryPage extends StatelessWidget {
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
     Map<String, int> cartItemPerOrder = {};
+    List itemsPerOrdes = [];
+
     for (var i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemPerOrder.containsKey(getCartHistoryList[i].time)) {
         cartItemPerOrder.update(getCartHistoryList[i].time!, (v) => ++v);
-
-//   print(getCartHistoryList[i]);
       } else {
         cartItemPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
     }
+    for (var i = 0; i < getCartHistoryList.length; i++) {
+      Map item = {};
 
-    List<int> cartItemPerOrderToList() {
-      return cartItemPerOrder.entries.map((e) => e.value).toList();
+      itemsPerOrdes.add(getCartHistoryList[i]);
     }
-
-    List<String> cartOrderTimeToList() {
+    print('items per ordes' + itemsPerOrdes.toString());
+    print(cartItemPerOrder.entries);
+    List<String> timePerOrders() {
       return cartItemPerOrder.entries.map((e) => e.key).toList();
     }
 
-    List<int> orderTimes = cartItemPerOrderToList();
+    List<int> cartOrdersPerTimeToList() {
+      return cartItemPerOrder.entries.map((e) => e.value).toList();
+    }
 
-    var listCount = 0;
+    List<String> timePerOrderCheout = timePerOrders();
+    List<int> orderTimes = cartOrdersPerTimeToList();
 
+    var listCounter = 0;
+    var tmecount = 0;
+
+    print(timePerOrderCheout);
+    print(orderTimes);
     return Scaffold(
       body: Column(children: [
         Container(
@@ -84,18 +94,19 @@ class CartHistoryPage extends StatelessWidget {
                 context: context,
                 child: ListView(
                   children: [
-                    for (var j = 0; j < cartItemPerOrder.length; j++)
+                    for (var i = 0; i < cartItemPerOrder.length; i++)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          (() {
-                            var date = DateFormat('MM/dd/yyyy hh:mm a').format(
-                                DateTime.parse(getCartHistoryList[j].time!));
+                          // (() {
+                          //  var date = DateFormat('MM/dd/yyyy hh:mm a').format(
+                          //   //     DateTime.parse(getCartHistoryList[i].time!));
+                          //   // var date = getCartHistoryList[tmecount].time!;
+                          //   var date = timePerOrderCheout[i];
+                          //   return BigText(text: date);
+                          // }()),
 
-                            return BigText(text: date);
-                          }()),
-
-                          // BigText(text: getCartHistoryList[j].time!),
+                          BigText(text: timePerOrderCheout[i]),
                           Container(
                             margin: EdgeInsets.only(top: Dimentions.h10 / 2),
                             child: Row(
@@ -108,10 +119,10 @@ class CartHistoryPage extends StatelessWidget {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children:
-                                        List.generate(orderTimes[j], (index) {
-                                      if (listCount <
+                                        List.generate(orderTimes[i], (index) {
+                                      if (listCounter <
                                           getCartHistoryList.length) {
-                                        listCount++;
+                                        listCounter++;
                                       }
 
                                       return Container(
@@ -128,43 +139,13 @@ class CartHistoryPage extends StatelessWidget {
                                               imageUrl: AppConstants.BASE_URL +
                                                   AppConstants.UPLOAD_URL +
                                                   getCartHistoryList[
-                                                          listCount - 1]
+                                                          listCounter - 1]
                                                       .img!),
                                         ),
                                       );
                                     }),
                                   ),
                                 ),
-                                // Wrap(
-                                //     spacing: Dimentions.h20 / 2,
-                                //     direction: Axis.horizontal,
-                                //     children:
-                                //         List.generate(orderTimes[i], (index) {
-                                //       if (listCount <
-                                //           getCartHistoryList.length) {
-                                //         listCount++;
-                                //       }
-                                //       return Container(
-                                //         margin: EdgeInsets.only(
-                                //           bottom: Dimentions.h20,
-                                //           // right: Dimentions.h20 / 2
-                                //         ),
-                                //         child: ClipRRect(
-                                //           borderRadius: BorderRadius.circular(
-                                //               Dimentions.h10),
-                                //           child: FancyShimmerImage(
-                                //               boxFit: BoxFit.cover,
-                                //               width: Dimentions.h20 * 4,
-                                //               height: Dimentions.h20 * 4,
-                                //               imageUrl: AppConstants.BASE_URL +
-                                //                   AppConstants.UPLOAD_URL +
-                                //                   getCartHistoryList[
-                                //                           listCount - 1]
-                                //                       .img!),
-                                //         ),
-                                //       );
-                                //     }))
-
                                 Expanded(
                                   child: Container(
                                     padding: EdgeInsets.only(
@@ -183,32 +164,34 @@ class CartHistoryPage extends StatelessWidget {
                                         BigText(
                                             color: titleColor,
                                             size: Dimentions.font16,
-                                            text: orderTimes[j].toString() +
-                                                (orderTimes[j] < 2
+                                            text: orderTimes[i].toString() +
+                                                (orderTimes[i] < 2
                                                     ? ' item'
                                                     : ' items')),
                                         GestureDetector(
                                           onTap: () {
                                             Map<int, CartModel> moreOrder = {};
-                                            var orderTime =
-                                                cartOrderTimeToList();
-                                            for (var m = 0;
-                                                m < getCartHistoryList.length;
-                                                m++) {
-                                              if (getCartHistoryList[m].time ==
-                                                  orderTime[j]) {
-                                                moreOrder.putIfAbsent(
-                                                    getCartHistoryList[j].id!,
-                                                    () => CartModel.fromJson(
-                                                        jsonDecode(jsonEncode(
-                                                            getCartHistoryList[
-                                                                j]))));
-                                              }
-                                            }
-                                            Get.find<CartController>()
-                                                .setItems = moreOrder;
-                                            Get.find<CartController>()
-                                                .addToCartList();
+
+                                            print('time per orders:' +
+                                                timePerOrderCheout[i]
+                                                    .toString());
+                                            // for (var m = 0;
+                                            //     m < getCartHistoryList.length;
+                                            //     m++) {
+                                            //   if (getCartHistoryList[m].time ==
+                                            //       orderTime[j]) {
+                                            //     moreOrder.putIfAbsent(
+                                            //         getCartHistoryList[j].id!,
+                                            //         () => CartModel.fromJson(
+                                            //             jsonDecode(jsonEncode(
+                                            //                 getCartHistoryList[
+                                            //                     j]))));
+                                            // }
+                                            // }
+                                            // Get.find<CartController>()
+                                            //     .setItems = moreOrder;
+                                            // Get.find<CartController>()
+                                            //     .addToCartList();
                                           },
                                           child: Container(
                                             padding: EdgeInsets.symmetric(

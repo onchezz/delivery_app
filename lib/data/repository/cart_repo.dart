@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:delivery_app/models/cart_model.dart';
 import 'package:delivery_app/utils/app_constants.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartRepo {
@@ -18,16 +19,25 @@ class CartRepo {
   void addToCartList(List<CartModel> cartList) {
     sharedPreferences.remove(AppConstants.Cart_List);
 
-    cart = [];
+    // cart = [];
     //converting the cartmodel to a list
-    var time = DateTime.now().toString();
-    cartList.forEach((item) {
-      item.time = time;
-      return cart.add(jsonEncode(item));
-    });
+    // var time = DateTime.now().toString();
+    // var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
+    // cartList.forEach((item) {
+    //   item.time = date;
+    //   return cart.add(jsonEncode(item));
+    // });
+    var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
+    for (var i = 0; i < cartList.length; i++) {
+      cartList[i].time = date;
+      print('cart List items' + cartList[i].toJson().toString());
+
+      cart.add(jsonEncode(cartList[i]));
+      print('items in cart history' + cart.toString());
+    }
 
     sharedPreferences.setStringList(AppConstants.Cart_List, cart);
-    print(sharedPreferences.getStringList(AppConstants.Cart_List));
+    // print(sharedPreferences.getStringList(AppConstants.Cart_List));
 
     // getCartList();
   }
@@ -66,9 +76,12 @@ class CartRepo {
 
   void addToHistoryList() {
     for (var i = 0; i < cart.length; i++) {
-      print('cart history ' + cart[i]);
       cartHistoryList.add(cart[i]);
     }
+
+    cart.forEach((element) {
+      print(' this is the cart history ' + element);
+    });
     remove();
     sharedPreferences.setStringList(
         AppConstants.Cart_History_List, cartHistoryList);
@@ -79,7 +92,7 @@ class CartRepo {
   }
 
   void remove() {
-    cart.clear();
+    cart = [];
     sharedPreferences.remove(AppConstants.Cart_List);
   }
 }
