@@ -165,9 +165,30 @@ class CartHistoryPage extends StatelessWidget {
                                             print('time per orders:' +
                                                 timePerOrderCheout[l]
                                                     .toString());
-                                            print("items per order" +
-                                                getCartHistoryList[l]
-                                                    .toString());
+                                            Map<int, CartModel> moreItems = {};
+                                            for (var j = 0;
+                                                j < getCartHistoryList.length;
+                                                j++) {
+                                              if (getCartHistoryList[j].time ==
+                                                  timePerOrderCheout[l]) {
+                                                print('product in list is' +
+                                                    getCartHistoryList[j]
+                                                        .name!);
+                                                moreItems.putIfAbsent(
+                                                    getCartHistoryList[j].id!,
+                                                    () => CartModel.fromJson(
+                                                        jsonDecode(jsonEncode(
+                                                            getCartHistoryList[
+                                                                j]))));
+                                              }
+                                            }
+                                            print(moreItems);
+                                            Get.find<CartController>()
+                                                .setItems = moreItems;
+                                            Get.find<CartController>()
+                                                .addToCartList();
+                                            Get.toNamed(
+                                                RouteHelper.getCartPage());
                                           },
                                           child: Container(
                                             padding: EdgeInsets.symmetric(
