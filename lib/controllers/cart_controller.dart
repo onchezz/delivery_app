@@ -54,7 +54,7 @@ class CartController extends GetxController {
         Get.snackbar('cart', '$quantity  items added to cart',
             backgroundColor: main1Color,
             colorText: appWhite,
-            duration: Duration(seconds: 1));
+            duration: Duration(milliseconds: 700));
       } else {
         Get.snackbar('item count', 'you should atleast add one more item  ',
             backgroundColor: main1Color, colorText: appWhite);

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/models/cart_model.dart';
+import 'package:delivery_app/routes/route_helper.dart';
 import 'package:delivery_app/utils/app_constants.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:delivery_app/utils/dimensions.dart';
@@ -22,7 +23,6 @@ class CartHistoryPage extends StatelessWidget {
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
     Map<String, int> cartItemPerOrder = {};
-    List itemsPerOrdes = [];
 
     for (var i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemPerOrder.containsKey(getCartHistoryList[i].time)) {
@@ -31,13 +31,7 @@ class CartHistoryPage extends StatelessWidget {
         cartItemPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
     }
-    for (var i = 0; i < getCartHistoryList.length; i++) {
-      Map item = {};
 
-      itemsPerOrdes.add(getCartHistoryList[i]);
-    }
-    print('items per ordes' + itemsPerOrdes.toString());
-    print(cartItemPerOrder.entries);
     List<String> timePerOrders() {
       return cartItemPerOrder.entries.map((e) => e.key).toList();
     }
@@ -50,10 +44,7 @@ class CartHistoryPage extends StatelessWidget {
     List<int> orderTimes = cartOrdersPerTimeToList();
 
     var listCounter = 0;
-    var tmecount = 0;
 
-    print(timePerOrderCheout);
-    print(orderTimes);
     return Scaffold(
       body: Column(children: [
         Container(
@@ -94,7 +85,7 @@ class CartHistoryPage extends StatelessWidget {
                 context: context,
                 child: ListView(
                   children: [
-                    for (var i = 0; i < cartItemPerOrder.length; i++)
+                    for (var l = 0; l < cartItemPerOrder.length; l++)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -106,7 +97,8 @@ class CartHistoryPage extends StatelessWidget {
                           //   return BigText(text: date);
                           // }()),
 
-                          BigText(text: timePerOrderCheout[i]),
+                          // BigText(text: timePerOrderCheout[l]),
+                          BigText(text: getCartHistoryList[listCounter].time!),
                           Container(
                             margin: EdgeInsets.only(top: Dimentions.h10 / 2),
                             child: Row(
@@ -119,7 +111,7 @@ class CartHistoryPage extends StatelessWidget {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children:
-                                        List.generate(orderTimes[i], (index) {
+                                        List.generate(orderTimes[l], (index) {
                                       if (listCounter <
                                           getCartHistoryList.length) {
                                         listCounter++;
@@ -164,34 +156,18 @@ class CartHistoryPage extends StatelessWidget {
                                         BigText(
                                             color: titleColor,
                                             size: Dimentions.font16,
-                                            text: orderTimes[i].toString() +
-                                                (orderTimes[i] < 2
+                                            text: orderTimes[l].toString() +
+                                                (orderTimes[l] < 2
                                                     ? ' item'
                                                     : ' items')),
                                         GestureDetector(
                                           onTap: () {
-                                            Map<int, CartModel> moreOrder = {};
-
                                             print('time per orders:' +
-                                                timePerOrderCheout[i]
+                                                timePerOrderCheout[l]
                                                     .toString());
-                                            // for (var m = 0;
-                                            //     m < getCartHistoryList.length;
-                                            //     m++) {
-                                            //   if (getCartHistoryList[m].time ==
-                                            //       orderTime[j]) {
-                                            //     moreOrder.putIfAbsent(
-                                            //         getCartHistoryList[j].id!,
-                                            //         () => CartModel.fromJson(
-                                            //             jsonDecode(jsonEncode(
-                                            //                 getCartHistoryList[
-                                            //                     j]))));
-                                            // }
-                                            // }
-                                            // Get.find<CartController>()
-                                            //     .setItems = moreOrder;
-                                            // Get.find<CartController>()
-                                            //     .addToCartList();
+                                            print("items per order" +
+                                                getCartHistoryList[l]
+                                                    .toString());
                                           },
                                           child: Container(
                                             padding: EdgeInsets.symmetric(

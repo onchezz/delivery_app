@@ -75,20 +75,24 @@ class CartRepo {
   }
 
   void addToHistoryList() {
-    for (var i = 0; i < cart.length; i++) {
-      cartHistoryList.add(cart[i]);
-    }
-
     cart.forEach((element) {
-      print(' this is the cart history ' + element);
+      if (cartHistoryList.contains(element)) {
+        print('contains element' + element);
+      } else {
+        cartHistoryList.add(element);
+      }
     });
+    // for (var i = 0; i < cart.length; i++) {
+    //   cartHistoryList.add(cart[i]);
+    // }
+
     remove();
     sharedPreferences.setStringList(
         AppConstants.Cart_History_List, cartHistoryList);
-    print(getCartHistoryList().length.toString());
-    for (var f = 0; f < getCartHistoryList().length; f++) {
-      print(getCartHistoryList()[f].time);
-    }
+    print('length of history list' + getCartHistoryList().length.toString());
+    getCartHistoryList().forEach((element) {
+      print(element.name.toString() + "is added to cart history List");
+    });
   }
 
   void remove() {
