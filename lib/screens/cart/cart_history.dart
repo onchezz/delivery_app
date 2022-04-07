@@ -171,15 +171,35 @@ class CartHistoryPage extends StatelessWidget {
                                                 j++) {
                                               if (getCartHistoryList[j].time ==
                                                   timePerOrderCheout[l]) {
-                                                print('product in list is' +
-                                                    getCartHistoryList[j]
-                                                        .name!);
                                                 moreItems.putIfAbsent(
                                                     getCartHistoryList[j].id!,
                                                     () => CartModel.fromJson(
                                                         jsonDecode(jsonEncode(
                                                             getCartHistoryList[
                                                                 j]))));
+                                                var historyItem =
+                                                    getCartHistoryList[j];
+                                                // moreItems.putIfAbsent(
+                                                //     getCartHistoryList[j].id!,
+                                                //     () => CartModel(
+                                                //           id: historyItem.id,
+                                                //           name:
+                                                //               historyItem.name,
+                                                //           price:
+                                                //               historyItem.price,
+                                                //           img: historyItem.img,
+                                                //           created: historyItem
+                                                //               .created,
+                                                //           time:
+                                                //               historyItem.time,
+                                                //           exists: historyItem
+                                                //               .exists,
+                                                //           quantity: historyItem
+                                                //               .quantity,
+                                                //           product: historyItem
+                                                //               .product,
+                                                //         ));
+
                                               }
                                             }
                                             print(moreItems);
