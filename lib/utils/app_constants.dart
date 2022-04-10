@@ -7,7 +7,8 @@ class AppConstants {
 
   static const String TOKEN = 'DBtoken';
 
-  static const String BASE_URL = 'http://mvs.bslmeiyu.com';
+  static const String BASE_URL = 'http://127.0.0.1:8000';
+  // static const String BASE_URL = 'http://mvs.bslmeiyu.com';
 
   static const String POPULAR_PRODUCT_URI = '/api/v1/products/popular';
 

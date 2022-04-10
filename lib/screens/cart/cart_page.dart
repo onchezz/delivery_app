@@ -19,7 +19,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var da07fe15d1e47f4697852922bba5e996c4b5127c;
     return Scaffold(
       backgroundColor: appWhite,
       body: Stack(
@@ -95,6 +94,7 @@ class CartPage extends StatelessWidget {
                                                 RecomendedProductController>()
                                             .recomendedrProductList
                                             .indexOf(_cartList[index].product);
+
                                         if (recomendedIndex >= 0) {
                                           Get.toNamed(
                                               RouteHelper.getrecommendedPage(
@@ -205,17 +205,19 @@ class CartPage extends StatelessWidget {
       ),
       bottomNavigationBar:
           GetBuilder<CartController>(builder: (cartController) {
-        return Container(
-          height: Dimentions.bottomBarh,
-          padding: EdgeInsets.only(
-              left: Dimentions.w20, right: Dimentions.w20, top: Dimentions.w20),
-          decoration: BoxDecoration(
-              color: buttonBackgroundColor,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(Dimentions.h30),
-                  topRight: Radius.circular(Dimentions.h30))),
-          child: cartController.getCartItems.isNotEmpty
-              ? Padding(
+        return cartController.getCartItems.isNotEmpty
+            ? Container(
+                height: Dimentions.bottomBarh,
+                padding: EdgeInsets.only(
+                    left: Dimentions.w20,
+                    right: Dimentions.w20,
+                    top: Dimentions.w20),
+                decoration: BoxDecoration(
+                    color: buttonBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Dimentions.h30),
+                        topRight: Radius.circular(Dimentions.h30))),
+                child: Padding(
                   padding: EdgeInsets.only(bottom: Dimentions.h10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,9 +258,10 @@ class CartPage extends StatelessWidget {
                       )
                     ],
                   ),
-                )
-              : Container(),
-        );
+                ))
+            : Container(
+                height: Dimentions.bottomBarh,
+              );
       }),
     );
   }
