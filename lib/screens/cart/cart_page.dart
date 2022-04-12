@@ -94,11 +94,19 @@ class CartPage extends StatelessWidget {
                                                 RecomendedProductController>()
                                             .recomendedrProductList
                                             .indexOf(_cartList[index].product);
-
-                                        if (recomendedIndex >= 0) {
-                                          Get.toNamed(
-                                              RouteHelper.getrecommendedPage(
-                                                  recomendedIndex, 'cart'));
+                                        if (recomendedIndex <= 0) {
+                                          Get.snackbar('CartHistory',
+                                              ' items added from cartHistroy',
+                                              backgroundColor: main1Color,
+                                              colorText: appWhite,
+                                              duration:
+                                                  Duration(milliseconds: 700));
+                                        } else {
+                                          if (recomendedIndex >= 0) {
+                                            Get.toNamed(
+                                                RouteHelper.getrecommendedPage(
+                                                    recomendedIndex, 'cart'));
+                                          }
                                         }
                                       }
                                     },
