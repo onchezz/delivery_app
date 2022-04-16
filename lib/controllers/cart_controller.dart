@@ -14,6 +14,7 @@ class CartController extends GetxController {
   List<CartModel> storageItems = [];
   // var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
   var date = DateTime.now().toString();
+
   void addItem(ProductModel product, int quantity) {
     if (_items.containsKey(product.id)) {
       _items.update(product.id!, (value) {
@@ -37,8 +38,8 @@ class CartController extends GetxController {
         update();
       }
     } else {
+      // _items = {};
       if (quantity > 0) {
-        // _items = {};
         _items.putIfAbsent(product.id!, () {
           return CartModel(
               id: product.id,

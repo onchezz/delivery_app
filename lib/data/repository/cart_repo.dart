@@ -18,28 +18,30 @@ class CartRepo {
 
   void addToCartList(List<CartModel> cartList) {
     sharedPreferences.remove(AppConstants.Cart_List);
-
+    cart.clear();
+    var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
     // cart = [];
     //converting the cartmodel to a list
-    // var time = DateTime.now().toString();
+    // var date = DateTime.now().toString();
     // var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
-    // cartList.forEach((item) {
-    //   item.time = date;
-    //   return cart.add(jsonEncode(item));
-    // });
-    var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
-    for (var i = 0; i < cartList.length; i++) {
-      cartList[i].time = date;
-      print('cart List items' + cartList[i].toJson().toString());
+    cartList.forEach((item) {
+      item.time = date;
+      return cart.add(jsonEncode(item));
+    });
 
-      cart.add(jsonEncode(cartList[i]));
-      print('items in cart history' + cart.toString());
-    }
+    // for (var i = 0; i < cartList.length; i++) {
+    //   cartList[i].time = date;
+    //   // print('cart List items' + cartList[i].toJson().toString());
+
+    //   cart.add(jsonEncode(cartList[i]));
+    //   // print('items in cart history' + cart.toString());
+    // }
 
     sharedPreferences.setStringList(AppConstants.Cart_List, cart);
     // print(sharedPreferences.getStringList(AppConstants.Cart_List));
 
     // getCartList();
+    // cart.clear();
   }
 
   List<CartModel> getCartList() {

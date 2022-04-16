@@ -46,6 +46,17 @@ class CartHistoryPage extends StatelessWidget {
 
     var listCounter = 0;
 
+    Widget date(int index) {
+      var output = DateTime.now().toString();
+      if (index < getCartHistoryList.length) {
+        output = getCartHistoryList[listCounter].time!;
+        // output = DateFormat('dd/MM/yyyy hh:mm a')
+        //     .format(DateTime.parse(getCartHistoryList[listCounter].time!));
+      }
+
+      return BigText(text: output);
+    }
+
     return Scaffold(
       body: SizedBox(
         height: Dimentions.screenh,
@@ -95,9 +106,10 @@ class CartHistoryPage extends StatelessWidget {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    BigText(
-                                        text: getCartHistoryList[listCounter]
-                                            .time!),
+                                    date(listCounter),
+                                    // BigText(
+                                    //     text: getCartHistoryList[listCounter]
+                                    //         .time!),
                                     Container(
                                       margin: EdgeInsets.only(
                                           top: Dimentions.h10 / 2),
@@ -172,9 +184,9 @@ class CartHistoryPage extends StatelessWidget {
                                                               : ' items')),
                                                   GestureDetector(
                                                     onTap: () {
-                                                      print('time per orders:' +
-                                                          timePerOrderCheout[l]
-                                                              .toString());
+                                                      // print('time per orders:' +
+                                                      //     timePerOrderCheout[l]
+                                                      //         .toString());
                                                       Map<int, CartModel>
                                                           moreItems = {};
                                                       for (var j = 0;
@@ -187,46 +199,47 @@ class CartHistoryPage extends StatelessWidget {
                                                                 .time ==
                                                             timePerOrderCheout[
                                                                 l]) {
-                                                          // moreItems.putIfAbsent(
-                                                          //     getCartHistoryList[j]
-                                                          //         .id!,
-                                                          //     () => CartModel.fromJson(
-                                                          //         jsonDecode(jsonEncode(
-                                                          //             getCartHistoryList[
-                                                          //                 j]))));
-                                                          var historyItem =
-                                                              getCartHistoryList[
-                                                                  j];
                                                           moreItems.putIfAbsent(
                                                               getCartHistoryList[
                                                                       j]
                                                                   .id!,
-                                                              () => CartModel(
-                                                                    id: historyItem
-                                                                        .id,
-                                                                    name: historyItem
-                                                                        .name,
-                                                                    price: historyItem
-                                                                        .price,
-                                                                    img: historyItem
-                                                                        .img,
-                                                                    created:
-                                                                        historyItem
-                                                                            .created,
-                                                                    time: historyItem
-                                                                        .time,
-                                                                    exists: historyItem
-                                                                        .exists,
-                                                                    quantity:
-                                                                        historyItem
-                                                                            .quantity,
-                                                                    product:
-                                                                        historyItem
-                                                                            .product,
-                                                                  ));
+                                                              () => CartModel.fromJson(
+                                                                  jsonDecode(jsonEncode(
+                                                                      getCartHistoryList[
+                                                                          j]))));
+                                                          // var historyItem =
+                                                          //     getCartHistoryList[
+                                                          //         j];
+                                                          // moreItems.putIfAbsent(
+                                                          //     getCartHistoryList[
+                                                          //             j]
+                                                          //         .id!,
+                                                          //     () => CartModel(
+                                                          //           id: historyItem
+                                                          //               .id,
+                                                          //           name: historyItem
+                                                          //               .name,
+                                                          //           price: historyItem
+                                                          //               .price,
+                                                          //           img: historyItem
+                                                          //               .img,
+                                                          //           created:
+                                                          //               historyItem
+                                                          //                   .created,
+                                                          //           time: historyItem
+                                                          //               .time,
+                                                          //           exists: historyItem
+                                                          //               .exists,
+                                                          //           quantity:
+                                                          //               historyItem
+                                                          //                   .quantity,
+                                                          //           product:
+                                                          //               historyItem
+                                                          //                   .product,
+                                                          //         ));
                                                         }
                                                       }
-                                                      print(moreItems);
+                                                      // print(moreItems);
                                                       Get.find<CartController>()
                                                           .setItems = moreItems;
                                                       Get.find<CartController>()
