@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:delivery_app/screens/Home/homepage.dart';
+import 'package:delivery_app/screens/accounts/account.dart';
+import 'package:delivery_app/screens/archives/arcchives.dart';
+import 'package:delivery_app/screens/auth/signup_page.dart';
 import 'package:delivery_app/screens/cart/cart_history.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,13 +35,9 @@ class _MainPageState extends State<MainPage> {
 
   final List _pages = [
     HomeScreen(),
-    Container(
-      child: const Center(child: Text('another Container 2')),
-    ),
+    SignupPage(),
     CartHistoryPage(),
-    Container(
-      child: const Center(child: Text('another Container 3')),
-    ),
+    AccountPage(),
   ];
   @override
   Widget build(BuildContext context) {

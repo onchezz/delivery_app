@@ -1,8 +1,7 @@
-import 'package:delivery_app/screens/Home/homepage.dart';
+import 'package:delivery_app/screens/Home/bottom_nav/main_page.dart';
 import 'package:delivery_app/screens/cart/cart_page.dart';
 import 'package:delivery_app/screens/item/popular_item.dart';
 import 'package:delivery_app/screens/item/recommended_item_detail.dart';
-import 'package:delivery_app/screens/main/main_page.dart';
 import 'package:delivery_app/screens/splash/splash_screen.dart';
 import 'package:get/route_manager.dart';
 
@@ -21,7 +20,7 @@ class RouteHelper {
       '$popularPage?pageId=$pageId&page=$page';
   static String getrecommendedPage(int pageId, String page) =>
       '$recommendedPage?pageId=$pageId&page=$page';
-  static String getCartPage() => "$cartPage";
+  static String getCartPage() => cartPage;
   //list of pages
   static List<GetPage> routes = [
     GetPage(

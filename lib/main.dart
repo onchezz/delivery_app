@@ -1,4 +1,6 @@
 import 'package:delivery_app/routes/route_helper.dart';
+import 'package:delivery_app/screens/auth/login.dart';
+import 'package:delivery_app/screens/auth/signup_page.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,14 +31,13 @@ class MyApp extends StatelessWidget {
             color: main1Color,
             elevation: 0,
           )),
-      // home: SplashScreen(),
-      initialRoute: RouteHelper.getSplashPage(),
+      home: LoginPage(),
+      // initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );
     //     });
     //   });
     // });
-    // home: const HomeScreen());
   }
 }
 

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/models/cart_model.dart';
-import 'package:delivery_app/routes/route_helper.dart';
 import 'package:delivery_app/screens/cart/empty_cart.dart';
 import 'package:delivery_app/utils/app_constants.dart';
 import 'package:delivery_app/utils/colors.dart';
@@ -13,13 +12,14 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 class CartHistoryPage extends StatelessWidget {
   const CartHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isScrollControlled = false;
     // var date = DateFormat('MM/dd/yyyy hh:mm a').format(DateTime.now());
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
@@ -55,6 +55,16 @@ class CartHistoryPage extends StatelessWidget {
       }
 
       return BigText(text: output);
+    }
+
+    showBottomModal() {
+      Widget itemsSheet() {
+        return Container(
+          height:Dimentions.h30*5,
+        );
+      }
+
+      return Get.bottomSheet(itemsSheet(),shape: Border.all());
     }
 
     return Scaffold(
@@ -184,6 +194,7 @@ class CartHistoryPage extends StatelessWidget {
                                                               : ' items')),
                                                   GestureDetector(
                                                     onTap: () {
+                                                      showBottomModal();
                                                       // print('time per orders:' +
                                                       //     timePerOrderCheout[l]
                                                       //         .toString());
@@ -237,6 +248,7 @@ class CartHistoryPage extends StatelessWidget {
                                                           //               historyItem
                                                           //                   .product,
                                                           //         ));
+
                                                         }
                                                       }
                                                       // print(moreItems);
@@ -244,8 +256,8 @@ class CartHistoryPage extends StatelessWidget {
                                                           .setItems = moreItems;
                                                       Get.find<CartController>()
                                                           .addToCartList();
-                                                      Get.toNamed(RouteHelper
-                                                          .getCartPage());
+                                                      // Get.toNamed(RouteHelper
+                                                      //     .getCartPage());
                                                     },
                                                     child: Container(
                                                       padding:
