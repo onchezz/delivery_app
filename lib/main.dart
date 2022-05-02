@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             color: main1Color,
             elevation: 0,
           )),
-      home: SignupPage(),
+      home: LoginPage(),
       // initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );

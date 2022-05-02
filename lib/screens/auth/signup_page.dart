@@ -52,39 +52,64 @@ class _SignupPageState extends State<SignupPage> {
     super.dispose();
   }
 
+  // _signup(AuthController auth) {
+  //   String email = emailController.text.trim();
+  //   String name = nameController.text.trim();
+  //   String phone = phoneController.text.trim();
+  //   String password = passwordController.text.trim();
+  //   String confirmPassword = confirmPasswordController.text.trim();
+  //   if (email.isEmpty) {
+  //     error('enter your email');
+  //   } else if (!GetUtils.isEmail(email)) {
+  //     error('enter correct email');
+  //   } else if (name.isEmpty) {
+  //     error('enter your name');
+  //   } else if (phone.isEmpty) {
+  //     error('enter phone number');
+  //   } else if (password.length < 6) {
+  //     error('password should be greater than 6 characters');
+  //   } else if (password != confirmPassword) {
+  //     error('passwords dont match');
+  //   } else {
+  //     SignUp _signupBody =
+  //         SignUp(email: email, name: name, phone: phone, password: password);
+
+  //     customLoader(context);
+  //     auth.register(_signupBody).then((status) {
+  //       if (status.isSuccess) {
+  //         error('all went well');
+  //         print('registration successful');
+  //       } else {
+  //         error(status.messege);
+  //       }
+  //       Navigator.of(context).pop();
+  //     });
+  //   }
+  // }
+
   _signup(AuthController auth) {
     String email = emailController.text.trim();
     String name = nameController.text.trim();
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
-    String confirmPassword = confirmPasswordController.text.trim();
-    if (email.isEmpty) {
-      error('enter your email');
-    } else if (!GetUtils.isEmail(email)) {
-      error('enter correct email');
-    } else if (name.isEmpty) {
-      error('enter your name');
-    } else if (phone.isEmpty) {
-      error('enter phone number');
-    } else if (password.length < 6) {
-      error('password should be greater than 6 characters');
-    } else if (password != confirmPassword) {
-      error('passwords dont match');
-    } else {
-      SignUp _signupBody =
-          SignUp(email: email, name: name, phone: phone, password: password);
 
-      customLoader(context);
-      auth.register(_signupBody).then((status) {
-        if (status.isSuccess) {
-          error('all went well');
-          print('registration successful');
-        } else {
-          error(status.messege);
-        }
-        Navigator.of(context).pop();
-      });
-    }
+    SignUp _signupBody =
+        SignUp(email: email, name: name, phone: phone, password: password);
+
+    customLoader(context);
+    auth.register(_signupBody).then((status) {
+      if (status.isSuccess) {
+        error('all went well');
+        print('registration successful');
+      } else {
+        error(status.messege);
+      }
+      Navigator.of(context).pop();
+    });
+  }
+
+  _validate() {
+    _formKey.currentState!.validate();
   }
 
   @override
@@ -113,7 +138,12 @@ class _SignupPageState extends State<SignupPage> {
                   hintText: 'Email',
                   prefixIcon: Icons.email,
                   keyboardType: TextInputType.emailAddress,
-                  validate: (emailController) {
+                  validate: (email) {
+                    if (email!.isEmpty) {
+                      return 'enter your email';
+                    } else if (!GetUtils.isEmail(email)) {
+                      return 'enter correct email';
+                    }
                     return null;
                   },
                 ),
@@ -121,14 +151,34 @@ class _SignupPageState extends State<SignupPage> {
                   controller: nameController,
                   hintText: 'Name',
                   prefixIcon: Icons.person,
+                  validate: (name) {
+                    if (name!.isEmpty) {
+                      return '       enter your email';
+                    }
+                    return null;
+                  },
                 ),
                 AppInputField(
                   controller: phoneController,
                   hintText: 'phone',
                   prefixIcon: Icons.phone_android,
                   keyboardType: TextInputType.phone,
+                  validate: (phone) {
+                    if (phone!.isEmpty) {
+                      return 'enter your email';
+                    } else if (!GetUtils.isPhoneNumber(phone)) {
+                      return 'enter correct Phone Number';
+                    }
+                    return null;
+                  },
                 ),
                 AppInputField(
+                  validate: (pass) {
+                    if (pass!.length < 6) {
+                      return 'enter correct email';
+                    }
+                    return null;
+                  },
                   obscureText: isVisible,
                   controller: passwordController,
                   hintText: 'password',
@@ -140,6 +190,12 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
                 AppInputField(
+                  validate: (pass) {
+                    if (pass!.length < 6 || pass != passwordController.text) {
+                      return 'passwords doesnt match';
+                    }
+                    return null;
+                  },
                   obscureText: isVisible,
                   controller: confirmPasswordController,
                   hintText: 'confirm password',
@@ -152,10 +208,8 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 AppButton(
                   text: !auth.isLoading ? 'Sign Up' : "please wait ...",
-                  tap: () {
-                    // _formKey.currentState!.validate();
-
-                    _signup(auth);
+                  tap: () async {
+                    _validate().then({_signup(auth)});
                   },
                 ),
                 AppButtonText(

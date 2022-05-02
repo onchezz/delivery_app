@@ -27,37 +27,41 @@ class AppInputField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: Dimentions.h10, vertical: Dimentions.h10),
-      padding: EdgeInsets.symmetric(
-          horizontal: Dimentions.h10, vertical: Dimentions.h10 / 2),
+      // padding: EdgeInsets.symmetric(
+      //     horizontal: Dimentions.h10, vertical: Dimentions.h10 / 2),
       decoration: BoxDecoration(
           color: appWhite,
-          borderRadius: BorderRadius.circular(Dimentions.h30),
+          borderRadius: BorderRadius.circular(Dimentions.h10),
           boxShadow: [
             BoxShadow(
-                blurRadius: 10,
+                blurRadius: 3,
                 spreadRadius: 1,
                 color: Colors.grey.withOpacity(0.3),
-                offset: const Offset(1, 5))
+                offset: const Offset(1, 1)),
           ]),
-      child: TextFormField(
-        validator: validate,
-        keyboardType: keyboardType,
-        controller: controller,
-        obscureText: obscureText,
-        cursorColor: main1Color,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        style: TextStyle(fontSize: Dimentions.font20),
-        decoration: InputDecoration(
-            // label: Text('Email'),
-            hintText: hintText,
-            hintStyle: TextStyle(fontSize: Dimentions.font20),
-            border: InputBorder.none,
-            errorStyle: TextStyle(fontSize: Dimentions.font10),
-            prefixIcon: Icon(
-              prefixIcon,
-              color: yellow1Color,
-            ),
-            suffixIcon: suffixIcon),
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: Dimentions.h10, vertical: Dimentions.h10 / 2),
+        child: TextFormField(
+          validator: validate,
+          keyboardType: keyboardType,
+          controller: controller,
+          obscureText: obscureText,
+          cursorColor: main1Color,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          style: TextStyle(fontSize: Dimentions.font20),
+          decoration: InputDecoration(
+              // label: Text('Email'),
+              hintText: hintText,
+              hintStyle: TextStyle(fontSize: Dimentions.font20),
+              border: InputBorder.none,
+              errorStyle: TextStyle(fontSize: Dimentions.font10),
+              prefixIcon: Icon(
+                prefixIcon,
+                color: yellow1Color,
+              ),
+              suffixIcon: suffixIcon),
+        ),
       ),
     );
   }
