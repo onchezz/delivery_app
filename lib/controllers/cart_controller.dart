@@ -3,7 +3,6 @@ import 'package:delivery_app/models/cart_model.dart';
 import 'package:delivery_app/models/product.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;

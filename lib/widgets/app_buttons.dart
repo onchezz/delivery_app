@@ -6,28 +6,29 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
-  const AppButton({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
+  final VoidCallback? tap;
+  const AppButton({Key? key, required this.text, this.tap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Dimentions.screenw / 2,
-      margin: EdgeInsets.symmetric(
-        vertical: Dimentions.h10,
-      ),
-      padding: EdgeInsets.symmetric(
-          vertical: Dimentions.h15, horizontal: Dimentions.h40),
-      decoration: BoxDecoration(
-          color: main1Color,
-          borderRadius: BorderRadius.circular(Dimentions.h30)),
-      child: Center(
-        child: BigText(
-          text: text,
-          color: appWhite,
-          size: Dimentions.font26,
+    return GestureDetector(
+      onTap: tap,
+      child: Container(
+        width: Dimentions.screenw / 2,
+        margin: EdgeInsets.symmetric(
+          vertical: Dimentions.h10,
+        ),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimentions.h15, horizontal: Dimentions.h40),
+        decoration: BoxDecoration(
+            color: main1Color,
+            borderRadius: BorderRadius.circular(Dimentions.h30)),
+        child: Center(
+          child: BigText(
+            text: text,
+            color: appWhite,
+            size: Dimentions.font26,
+          ),
         ),
       ),
     );
