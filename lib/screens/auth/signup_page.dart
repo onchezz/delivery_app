@@ -1,5 +1,5 @@
 import 'package:delivery_app/controllers/auth_controller.dart';
-import 'package:delivery_app/models/auth_model.dart';
+import 'package:delivery_app/models/signup_model.dart';
 import 'package:delivery_app/screens/auth/login.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:delivery_app/utils/dimensions.dart';
@@ -108,10 +108,6 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
-  _validate() {
-    _formKey.currentState!.validate();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,9 +161,9 @@ class _SignupPageState extends State<SignupPage> {
                   keyboardType: TextInputType.phone,
                   validate: (phone) {
                     if (phone!.isEmpty) {
-                      return 'enter your email';
+                      return 'Enter your phone Number';
                     } else if (!GetUtils.isPhoneNumber(phone)) {
-                      return 'enter correct Phone Number';
+                      return 'Enter correct Phone Number';
                     }
                     return null;
                   },
@@ -209,7 +205,9 @@ class _SignupPageState extends State<SignupPage> {
                 AppButton(
                   text: !auth.isLoading ? 'Sign Up' : "please wait ...",
                   tap: () async {
-                    _validate().then({_signup(auth)});
+                    if (_formKey.currentState!.validate()) {
+                      _signup(auth);
+                    }
                   },
                 ),
                 AppButtonText(

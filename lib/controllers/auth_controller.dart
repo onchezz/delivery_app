@@ -1,7 +1,8 @@
 import 'package:delivery_app/data/repository/auth_repo.dart';
-import 'package:delivery_app/models/auth_model.dart';
+import 'package:delivery_app/models/login_model.dart';
+import 'package:delivery_app/models/signup_model.dart';
 import 'package:delivery_app/models/response_model.dart';
-import 'package:delivery_app/widgets/loading_spinner.dart';
+
 import 'package:get/get.dart';
 
 class AuthController extends GetxController implements GetxService {
@@ -29,9 +30,11 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  loadingFn() {
-    if (isLoading) {
-      Get.defaultDialog(content: loading());
-    }
+  Future login(LoginModel login) async {
+    Response response = await authRepo.login(login);
+    _isLoading = true;
+    if (response.statusCode == 200) {
+    } else {}
+    _isLoading = false;
   }
 }
